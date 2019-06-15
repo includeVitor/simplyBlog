@@ -8,6 +8,24 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuex from 'Vuex';
+Vue.use(Vuex);
+
+//Vuex
+
+const store = new Vuex.Store({
+
+    state:{
+        item:{}
+    },
+    mutations:{
+        setItem(state,obj){
+            state.item = obj;
+        }
+    }
+
+});
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -23,8 +41,10 @@ Vue.component('tabela-lista-component', require('./components/TabelaListaCompone
 Vue.component('migalhas-component', require('./components/MigalhasComponent.vue'));
 Vue.component('modal-component', require('./components/modal/ModalComponent.vue'));
 Vue.component('modal-link-component', require('./components/modal/ModalLinkComponent.vue'));
+Vue.component('formulario-component', require('./components/FormularioComponent.vue'));
 
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });

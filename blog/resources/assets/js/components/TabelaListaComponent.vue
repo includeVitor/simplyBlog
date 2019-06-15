@@ -1,7 +1,8 @@
 <template>
     <div>   
         <div class="form-inline">
-            <a v-if="criar" v-bind:href="criar">Criar</a>
+            <a v-if="criar && !modal" v-bind:href="criar">Criar</a>
+            <modal-link-component v-if="criar && modal" tipo="link" nome="adicionar" titulo="Criar" css=""></modal-link-component>
             <div class="form-group pull-right">
                 <input type="search" class="form-control" placeholder="buscar" v-model="buscar">{{buscar}}
             </div>
@@ -26,20 +27,22 @@
                             <input type="hidden" name="_token" v-bind:value="token">
 
                             <a v-if="detalhe" v-bind:href="detalhe">Detalhe |</a>
-                            <a v-if="editar" v-bind:href="editar">Editar |</a>
-                            
+                            <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
+                            <modal-link-component v-if="criar && modal" :item="item" tipo="link" nome="editar" titulo="Editar |" css=""></modal-link-component>
                             <a href="#" v-on:click="executaForm(index)" >Deletar</a>
                         </form>
 
                         <span v-if="!token">
                             <a v-if="detalhe" v-bind:href="detalhe">Detalhe |</a>
-                            <a v-if="editar" v-bind:href="editar">Editar |</a>
+                            <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
+                            <modal-link-component v-if="criar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modal-link-component>
                             <a v-if="deletar" v-bind:href="deletar">Deletar |</a>
                         </span>
                         
                         <span v-if="token && !deletar">
                             <a v-if="detalhe" v-bind:href="detalhe">Detalhe |</a>
-                            <a v-if="editar" v-bind:href="editar">Editar</a>
+                            <a v-if="editar && !modal" v-bind:href="editar">Editar</a>
+                            <modal-link-component v-if="criar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modal-link-component>
                         </span>
  
                     </td>
@@ -52,7 +55,16 @@
 
 <script>
     export default {
-        props:['titulos', 'itens', 'ordem', 'ordemcol','criar', 'editar', 'deletar', 'detalhe', 'token'],
+        props:['titulos',
+                'itens',
+                'ordem',
+                'ordemcol',
+                'criar',
+                'editar',
+                'deletar',
+                'detalhe',
+                'token',
+                'modal'],
         data:function(){
             return{
                 buscar:'',
@@ -76,7 +88,7 @@
         },
         computed:{
             lista:function(){
-                
+
                 let ordem = this.ordemAux || "desc";
                 let ordemCol = this.ordemAuxCol || 0;
 
@@ -87,25 +99,29 @@
 
                     this.itens.sort(function(a,b){
 
-                        if(a[ordemCol] > b[ordemCol]) return 1;
-                        if(a[ordemCol] < b[ordemCol]) return -1;
+                        if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) return 1;
+                        if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) return -1;
                         return 0;
                     })
                 else
                     this.itens.sort(function(a,b){
 
-                        if(a[ordemCol] < b[ordemCol]) return 1;
-                        if(a[ordemCol] > b[ordemCol]) return -1;
+                        if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) return 1;
+                        if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) return -1;
                         return 0;
                     })
 
-                return this.itens.filter(res => {
-                    for(let k = 0; k< res.length; k ++)
-                        if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >=0 )
-                            return true;
-                    
-                    return false;
-                });
+                if(this.buscar){
+                    return this.itens.filter(res => {
+                        for(let k = 0; k< res.length; k ++)
+                            if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >=0 )
+                                return true;
+                        
+                        return false;
+                    });
+                }
+
+                return this.itens;
             }
         }
     }
