@@ -14,6 +14,7 @@
     export default {
         props:['titulo', 'cor'],
         computed:{
+
             defineCor: function(){
                 return "panel "+ (this.cor || "panel-default");
             }

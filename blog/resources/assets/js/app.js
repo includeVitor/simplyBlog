@@ -15,8 +15,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('topo-component', require('./components/Topo.vue'));
-Vue.component('painel-component', require('./components/Painel.vue'));
+Vue.component('topo-component', require('./components/TopoComponent.vue'));
+Vue.component('painel-component', require('./components/PainelComponent.vue'));
+Vue.component('caixa-component', require('./components/CaixaComponent.vue'));
+Vue.component('pagina-component', require('./components/PaginaComponent.vue'));
 
 
 const app = new Vue({
