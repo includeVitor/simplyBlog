@@ -8,19 +8,19 @@
             <painel-component titulo="Dashboard">
                 
                 <div class="col-md-4">
-                    <painel-component titulo="Dashboard">
+                    <painel-component titulo="Conteúdo 1" cor="green">
                         Teste de conteúdo 1
                     </painel-component>
                 </div>
 
                 <div class="col-md-4">
-                    <painel-component titulo="Dashboard">
-                        Teste de conteúdo 2
+                    <painel-component titulo="Conteúdo 2" cor="blue">
+                        Teste de conteúdo
                     </painel-component>
                 </div> 
 
                 <div class="col-md-4">
-                    <painel-component titulo="Dashboard">
+                    <painel-component titulo="Conteúdo 3" cor="red">
                         Teste de conteúdo 3
                     </painel-component>
                 </div>
