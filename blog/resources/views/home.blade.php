@@ -4,9 +4,9 @@
 
     <pagina-component tamanho="7">
         <painel-component titulo="Dashboard">
-                            
+            <migalhas-component v-bind:lista="{{$listaMigalhas}}"></migalhas-component>          
             <div class="col-md-4">
-                <caixa-component qtd="80" titulo="Artigos" url="#" cor="blue" icone="icon ion-md-book"></caixa-component>
+                <caixa-component qtd="80" titulo="Artigos" url="{{route('artigos.index')}}" cor="blue" icone="icon ion-md-book"></caixa-component>
             </div>
 
             <div class="col-md-4">

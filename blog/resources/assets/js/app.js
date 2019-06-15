@@ -19,6 +19,10 @@ Vue.component('topo-component', require('./components/TopoComponent.vue'));
 Vue.component('painel-component', require('./components/PainelComponent.vue'));
 Vue.component('caixa-component', require('./components/CaixaComponent.vue'));
 Vue.component('pagina-component', require('./components/PaginaComponent.vue'));
+Vue.component('tabela-lista-component', require('./components/TabelaListaComponent.vue'));
+Vue.component('migalhas-component', require('./components/MigalhasComponent.vue'));
+Vue.component('modal-component', require('./components/modal/ModalComponent.vue'));
+Vue.component('modal-link-component', require('./components/modal/ModalLinkComponent.vue'));
 
 
 const app = new Vue({
