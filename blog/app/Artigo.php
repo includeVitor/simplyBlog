@@ -17,11 +17,27 @@ class Artigo extends Model
     }
 
     public static function listaArtigos($paginate){
-        $listaArtigos = DB::table('artigos')
+
+        $user = auth()->user();
+
+        if($user->admin == "S"){
+            $listaArtigos = DB::table('artigos')
             ->join('users', 'users.id','=','artigos.user_id')
             ->select('artigos.id','artigos.titulo','artigos.descricao','users.name','artigos.data')
             ->whereNull('deleted_at')
+            ->orderBy('artigos.id', 'DESC')
             ->paginate($paginate);
+
+        }else{
+            $listaArtigos = DB::table('artigos')
+            ->join('users', 'users.id','=','artigos.user_id')
+            ->select('artigos.id','artigos.titulo','artigos.descricao','users.name','artigos.data')
+            ->whereNull('deleted_at')
+            ->where('artigos.user_id', '=', $user->id)
+            ->orderBy('artigos.id', 'DESC')
+            ->paginate($paginate);
+        }
+       
         
         return $listaArtigos;
     }
@@ -39,6 +55,48 @@ class Artigo extends Model
             ->whereDate('data', '<=', date('Y-m-d'))
             ->orderBy('data', 'DESC')
             ->paginate($paginate);
+        
+        return $listaArtigos;
+    }
+
+
+    public static function listaArtigosSiteBusca($paginate,  $busca = null){
+
+        if($busca){
+
+            $listaArtigos = DB::table('artigos')
+            ->join('users', 'users.id','=','artigos.user_id')
+            ->select(
+                'artigos.id',
+                'artigos.titulo',
+                'artigos.descricao',
+                'users.name as autor',
+                'artigos.data')
+            ->whereNull('deleted_at')
+            ->whereDate('data', '<=', date('Y-m-d'))
+            ->where(function($query) use ($busca){
+                $query->orWhere('titulo','like', '%'.$busca.'%')
+                    ->orWhere('descricao', 'like', '%'.$busca.'%');
+            })
+            ->orderBy('data', 'DESC')
+            ->paginate($paginate);
+
+        }
+        else{
+            $listaArtigos = DB::table('artigos')
+            ->join('users', 'users.id','=','artigos.user_id')
+            ->select(
+                'artigos.id',
+                'artigos.titulo',
+                'artigos.descricao',
+                'users.name as autor',
+                'artigos.data')
+            ->whereNull('deleted_at')
+            ->whereDate('data', '<=', date('Y-m-d'))
+            ->orderBy('data', 'DESC')
+            ->paginate($paginate);
+        }
+       
         
         return $listaArtigos;
     }

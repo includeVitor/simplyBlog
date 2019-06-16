@@ -23,7 +23,7 @@
             <tabela-lista-component
                 v-bind:titulos="['#','Nome', 'Email']"
                 v-bind:itens="{{json_encode($listaModelo)}}"
-                ordem="desc" ordemcol="2"
+                ordem="desc" ordemcol="0"
                 modal="sim"
                 criar="#criar" editar="/admin/adm/" detalhe="/admin/adm/">
 

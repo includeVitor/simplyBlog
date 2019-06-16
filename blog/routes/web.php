@@ -1,6 +1,7 @@
 <?php
 
 use App\Artigo;
+use Illuminate\Http\Request; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +15,21 @@ use App\Artigo;
 
 
 
-Route::get('/', function () {
+Route::get('/', function (Request  $req) {
+    
+    if(isset($req->busca) && $req->busca != ""){
 
-    $lista = Artigo::listaArtigosSite(3);
-    return view('site', compact('lista'));
+        $busca = $req->busca;
+        $lista = $lista = Artigo::listaArtigosSiteBusca(3,$busca);
+        
+        //busca
+    }else{
+        $lista = Artigo::listaArtigosSite(3);
+        $busca = "";
+    }
+
+    return view('site', compact('lista', 'busca'));
+
 })->name('site');
 
 Route::get('/artigo/{id}/{titulo?}', function ($id) {
