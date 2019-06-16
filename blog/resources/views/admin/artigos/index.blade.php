@@ -21,9 +21,9 @@
             <migalhas-component v-bind:lista="{{$listaMigalhas}}"></migalhas-component>
             
             <tabela-lista-component
-                v-bind:titulos="['#','Título', 'Descrição', 'Data']"
+                v-bind:titulos="['#','Título', 'Descrição', 'Autor', 'Data']"
                 v-bind:itens="{{json_encode($listaArtigos)}}"
-                ordem="desc" ordemcol="2"
+                ordem="desc" ordemcol="0"
                 modal="sim"
                 criar="#criar" editar="/admin/artigos/" detalhe="/admin/artigos/" deletar="/admin/artigos/" token="{{ csrf_token() }}">
 

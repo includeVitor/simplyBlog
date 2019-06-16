@@ -16,7 +16,7 @@
             </div>
         @endif
         
-        <painel-component titulo="Lista de Usuários">
+        <painel-component titulo="Lista de Autores">
 
             <migalhas-component v-bind:lista="{{$listaMigalhas}}"></migalhas-component>
             
@@ -25,7 +25,7 @@
                 v-bind:itens="{{json_encode($listaModelo)}}"
                 ordem="desc" ordemcol="2"
                 modal="sim"
-                criar="#criar" editar="/admin/usuarios/" detalhe="/admin/usuarios/" deletar="/admin/usuarios/" token="{{ csrf_token() }}">
+                criar="#criar" editar="/admin/autores/" detalhe="/admin/autores/">
 
             </tabela-lista-component>
             <div align="center">
@@ -53,7 +53,7 @@
                 <label for="autor">Autor</label>
                 <select class="form-control" id="autor" name="autor">
                     <option {{ ( old('autor') && old('autor') == 'N' ? 'selected' : '' )}} value="N">Não</option>
-                    <option {{ ( old('autor') && old('autor') == 'S' ? 'selected' : '' )}} value="S">Sim</option>
+                    <option {{ ( old('autor') && old('autor') == 'S' ? 'selected' : '' )}} {{ ( !old('autor') ? 'selected' : '' )}} value="S">Sim</option>
                 </select>
             </div>
 
@@ -70,7 +70,7 @@
     </modal-component>
 
     <modal-component nome="editar" titulo="Editar">
-        <formulario-component id="frmEditar" css="" :action="'/admin/usuarios/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}" >
+        <formulario-component id="frmEditar" css="" :action="'/admin/autores/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}" >
 
             <div class="form-group">
                 <label for="name">Nome</label>
@@ -81,6 +81,7 @@
                 <label for="email">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" v-model="$store.state.item.email" placeholder="E-mail">
             </div>
+
             <div class="form-group">
                 <label for="autor">Autor</label>
                 <select class="form-control" id="autor" name="autor" v-model="$store.state.item.autor">

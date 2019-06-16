@@ -44,6 +44,7 @@ Vue.component('modal-link-component', require('./components/modal/ModalLinkCompo
 Vue.component('formulario-component', require('./components/FormularioComponent.vue'));
 
 
+
 const app = new Vue({
     el: '#app',
     store,
