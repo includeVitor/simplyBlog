@@ -16,7 +16,7 @@
             </div>
         @endif
         
-        <painel-component titulo="Lista de Autores">
+        <painel-component titulo="Lista de Admin">
 
             <migalhas-component v-bind:lista="{{$listaMigalhas}}"></migalhas-component>
             
@@ -25,7 +25,7 @@
                 v-bind:itens="{{json_encode($listaModelo)}}"
                 ordem="desc" ordemcol="2"
                 modal="sim"
-                criar="#criar" editar="/admin/autores/" detalhe="/admin/autores/">
+                criar="#criar" editar="/admin/adm/" detalhe="/admin/adm/">
 
             </tabela-lista-component>
             <div align="center">
@@ -35,9 +35,8 @@
 
     </pagina-component>
 
-    
     <modal-component nome="adicionar" titulo="Adicionar">
-        <formulario-component id="formAdicionar" css="" action="{{route('usuarios.store')}}" method="post" enctype="" token="{{ csrf_token() }}" >
+        <formulario-component id="formAdicionar" css="" action="{{route('adm.store')}}" method="post" enctype="" token="{{ csrf_token() }}" >
 
             <div class="form-group">
                 <label for="name">Nome</label>
@@ -50,10 +49,10 @@
             </div>
 
             <div class="form-group">
-                <label for="autor">Autor</label>
-                <select class="form-control" id="autor" name="autor">
-                    <option {{ ( old('autor') && old('autor') == 'N' ? 'selected' : '' )}} value="N">Não</option>
-                    <option {{ ( old('autor') && old('autor') == 'S' ? 'selected' : '' )}} {{ ( !old('autor') ? 'selected' : '' )}} value="S">Sim</option>
+                <label for="admin">Admin</label>
+                <select class="form-control" id="admin" name="admin">
+                    <option {{ ( old('admin') && old('admin') == 'N' ? 'selected' : '' )}} value="N">Não</option>
+                    <option {{ ( old('admin') && old('admin') == 'S' ? 'selected' : '' )}} value="S">Sim</option>
                 </select>
             </div>
 
@@ -70,7 +69,7 @@
     </modal-component>
 
     <modal-component nome="editar" titulo="Editar">
-        <formulario-component id="frmEditar" css="" :action="'/admin/autores/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}" >
+        <formulario-component id="frmEditar" css="" :action="'/admin/adm/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}" >
 
             <div class="form-group">
                 <label for="name">Nome</label>
@@ -83,8 +82,8 @@
             </div>
 
             <div class="form-group">
-                <label for="autor">Autor</label>
-                <select class="form-control" id="autor" name="autor" v-model="$store.state.item.autor">
+                <label for="admin">Admin</label>
+                <select class="form-control" id="admin" name="admin" v-model="$store.state.item.admin">
                     <option value="N">Não</option>
                     <option value="S">Sim</option>
                 </select>
@@ -92,7 +91,7 @@
 
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" v-model="$store.state.item.conteudo" >
             </div>
 
         </formulario-component>

@@ -17,18 +17,27 @@ class Artigo extends Model
     }
 
     public static function listaArtigos($paginate){
-
-        /*$listaArtigos = Artigo::select('id','titulo','descricao','user_id', 'data')->paginate(2);
-        foreach ($listaArtigos as $key => $value) {
-            $value->user_id = \App\User::find($value->user_id)->name;
-            //$value->user_id = $value->user->name;
-            //unset($value->user);
-        }*/
-
         $listaArtigos = DB::table('artigos')
             ->join('users', 'users.id','=','artigos.user_id')
             ->select('artigos.id','artigos.titulo','artigos.descricao','users.name','artigos.data')
             ->whereNull('deleted_at')
+            ->paginate($paginate);
+        
+        return $listaArtigos;
+    }
+    
+    public static function listaArtigosSite($paginate){
+        $listaArtigos = DB::table('artigos')
+            ->join('users', 'users.id','=','artigos.user_id')
+            ->select(
+                'artigos.id',
+                'artigos.titulo',
+                'artigos.descricao',
+                'users.name as autor',
+                'artigos.data')
+            ->whereNull('deleted_at')
+            ->whereDate('data', '<=', date('Y-m-d'))
+            ->orderBy('data', 'DESC')
             ->paginate($paginate);
         
         return $listaArtigos;

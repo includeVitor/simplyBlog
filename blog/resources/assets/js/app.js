@@ -42,6 +42,7 @@ Vue.component('migalhas-component', require('./components/MigalhasComponent.vue'
 Vue.component('modal-component', require('./components/modal/ModalComponent.vue'));
 Vue.component('modal-link-component', require('./components/modal/ModalLinkComponent.vue'));
 Vue.component('formulario-component', require('./components/FormularioComponent.vue'));
+Vue.component('artigo-card-component', require('./components/ArtigoCardComponent.vue'));
 
 
 

@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 <tr v-for="(item, index) in lista">
-                    <td v-for="i in item">{{i}}</td>
+                    <td v-for="i in item">{{i | formataData}}</td>
 
                     <td v-if="detalhe || editar ||  token">
 
@@ -41,7 +41,7 @@
                             <modal-link-component v-if="detalhe && modal" :item="item" :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modal-link-component>
 
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                            <modal-link-component v-if="editar && modal" tipo="link" :url="editar" nome="editar" titulo="Editar |" css=""></modal-link-component>
+                            <modal-link-component v-if="editar && modal" tipo="link" :item="item" :url="editar" nome="editar" titulo="Editar |" css=""></modal-link-component>
                             <a v-if="deletar" v-bind:href="deletar">Deletar |</a>
                         </span>
                         
@@ -50,8 +50,9 @@
                             <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
                             <modal-link-component v-if="detalhe && modal" :item="item"  :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modal-link-component>
 
+
                             <a v-if="editar && !modal" v-bind:href="editar">Editar</a>
-                            <modal-link-component v-if="editar && modal" tipo="link" :url="editar" nome="editar" titulo="Editar |" css=""></modal-link-component>
+                            <modal-link-component v-if="editar && modal" tipo="link" :item="item" :url="editar" nome="editar" titulo="Editar |" css=""></modal-link-component>
                         </span>
  
                     </td>
@@ -93,6 +94,21 @@
                 }else{
                     this.ordemAux = 'asc';
                 }
+            }
+        },
+        filters:{
+            formataData:function(valor){
+
+                if(!valor) return '';
+
+                valor = valor.toString();
+                if(valor.split('-').length == 3){
+                    valor = valor.split('-');
+                    return `${valor[2]}/${valor[1]}/${valor[0]}`;
+                }
+
+                return valor ;
+
             }
         },
         computed:{

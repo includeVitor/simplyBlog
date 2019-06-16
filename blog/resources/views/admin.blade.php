@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <pagina-component tamanho="7">
+    <pagina-component tamanho="10">
         <painel-component titulo="Dashboard">
             <migalhas-component v-bind:lista="{{$listaMigalhas}}"></migalhas-component>          
             <div class="col-md-4">
@@ -15,6 +15,10 @@
 
             <div class="col-md-4">
                 <caixa-component qtd="{{$totalAutores}}" titulo="Autores" url="{{route('autores.index')}}" cor="red" icone="fa fa-user-circle-o"></caixa-component>
+            </div>
+
+            <div class="col-md-4">
+                <caixa-component qtd="{{$totalAdmin}}" titulo="Admin" url="{{route('adm.index')}}" cor="blue" icone="fa fa-user-circle-o"></caixa-component>
             </div>
 
         </painel-component>

@@ -6,3 +6,4 @@ php artisan make:model Artigo
 php artisan make:migration add_autor_table_users --table=users
 php artisan make:controller Admin/AutoresController --resource
 php artisan make:migration add_user_id_table_artigos
+php artisan make:migration
