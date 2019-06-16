@@ -22,27 +22,36 @@
 
                     <td v-if="detalhe || editar ||  token">
 
-                        <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post">
+                        <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar + item.id" method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" v-bind:value="token">
 
-                            <a v-if="detalhe" v-bind:href="detalhe">Detalhe |</a>
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
+                            <modal-link-component v-if="detalhe && modal" :item="item" :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modal-link-component>
+
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                            <modal-link-component v-if="criar && modal" :item="item" tipo="link" nome="editar" titulo="Editar |" css=""></modal-link-component>
+                            <modal-link-component v-if="editar && modal" :item="item" tipo="link" :url="editar" nome="editar" titulo="Editar |" css=""></modal-link-component>
+
                             <a href="#" v-on:click="executaForm(index)" >Deletar</a>
                         </form>
 
                         <span v-if="!token">
-                            <a v-if="detalhe" v-bind:href="detalhe">Detalhe |</a>
+
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
+                            <modal-link-component v-if="detalhe && modal" :item="item" :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modal-link-component>
+
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                            <modal-link-component v-if="criar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modal-link-component>
+                            <modal-link-component v-if="editar && modal" tipo="link" :url="editar" nome="editar" titulo="Editar |" css=""></modal-link-component>
                             <a v-if="deletar" v-bind:href="deletar">Deletar |</a>
                         </span>
                         
                         <span v-if="token && !deletar">
-                            <a v-if="detalhe" v-bind:href="detalhe">Detalhe |</a>
+
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
+                            <modal-link-component v-if="detalhe && modal" :item="item"  :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modal-link-component>
+
                             <a v-if="editar && !modal" v-bind:href="editar">Editar</a>
-                            <modal-link-component v-if="criar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modal-link-component>
+                            <modal-link-component v-if="editar && modal" tipo="link" :url="editar" nome="editar" titulo="Editar |" css=""></modal-link-component>
                         </span>
  
                     </td>
@@ -88,7 +97,7 @@
         },
         computed:{
             lista:function(){
-
+                let lista = this.itens.data;
                 let ordem = this.ordemAux || "desc";
                 let ordemCol = this.ordemAuxCol || 0;
 
@@ -97,14 +106,14 @@
 
                 if(ordem == "asc")
 
-                    this.itens.sort(function(a,b){
+                    lista.sort(function(a,b){
 
                         if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) return 1;
                         if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) return -1;
                         return 0;
                     })
                 else
-                    this.itens.sort(function(a,b){
+                    lista.sort(function(a,b){
 
                         if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) return 1;
                         if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) return -1;
@@ -112,7 +121,9 @@
                     })
 
                 if(this.buscar){
-                    return this.itens.filter(res => {
+                    
+                    return lista.filter(res => {
+                        res = Object.values(res);
                         for(let k = 0; k< res.length; k ++)
                             if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >=0 )
                                 return true;
@@ -121,7 +132,7 @@
                     });
                 }
 
-                return this.itens;
+                return lista;
             }
         }
     }
