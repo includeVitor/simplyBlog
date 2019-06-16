@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-4">
-                <caixa-component qtd="80" titulo="Usuários" url="#" cor="green" icone="icon ion-md-person"></caixa-component>
+                <caixa-component qtd="80" titulo="Usuários" url="{{route('usuarios.index')}}" cor="green" icone="icon ion-md-person"></caixa-component>
             </div> 
 
             <div class="col-md-4">
