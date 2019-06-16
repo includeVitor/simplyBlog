@@ -1382,7 +1382,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(75);
+module.exports = __webpack_require__(78);
 
 
 /***/ }),
@@ -1435,7 +1435,7 @@ Vue.component('migalhas-component', __webpack_require__(63));
 Vue.component('modal-component', __webpack_require__(66));
 Vue.component('modal-link-component', __webpack_require__(69));
 Vue.component('formulario-component', __webpack_require__(72));
-Vue.component('artigo-card-component', __webpack_require__(89));
+Vue.component('artigo-card-component', __webpack_require__(75));
 
 var app = new Vue({
     el: '#app',
@@ -47710,33 +47710,14 @@ if (false) {
 
 /***/ }),
 /* 75 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(90)
+var __vue_script__ = __webpack_require__(76)
 /* template */
-var __vue_template__ = __webpack_require__(91)
+var __vue_template__ = __webpack_require__(77)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47775,7 +47756,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 90 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47814,7 +47795,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 91 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47865,6 +47846,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-02b55fb8", module.exports)
   }
 }
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
