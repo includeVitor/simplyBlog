@@ -18,7 +18,7 @@
                         titulo="{{str_limit($value->titulo, '20', '...')}}"
                         descricao="{{str_limit($value->descricao, '100', '...')}}"
                         link="{{route('artigo', [$value->id, str_slug($value->titulo)])}}"
-                        imagem="https://greensignal.com.br/wp-content/uploads/2018/11/logo_green_site.png"
+                        imagem=""
                         data="{{$value->data}}"
                         autor="{{$value->autor}}"
                         sm="6"
